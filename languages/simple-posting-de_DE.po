@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Posting\n"
+"POT-Creation-Date: 2023-05-04 12:07+0200\n"
+"PO-Revision-Date: 2023-05-04 12:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: simple-posting.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: simple-posting.php:87 simple-posting.php:272
+msgid "All Postings"
+msgstr "Alle Postings"
+
+#: simple-posting.php:88
+msgid "New Posting"
+msgstr "Erstellen"
+
+#: simple-posting.php:89 simple-posting.php:213 simple-posting.php:223
+msgid "Categories"
+msgstr "Kategorien"
+
+#: simple-posting.php:90 simple-posting.php:239 simple-posting.php:253
+msgid "Topics"
+msgstr "Themen"
+
+#: simple-posting.php:128
+msgid "Plugin settings"
+msgstr "Plugin-Einstellungen"
+
+#: simple-posting.php:139
+msgid ""
+"You need a free <a href=\"https://zapier.com/\" target=\"_blank\">Zapier</a> "
+"account in order to use this plugin."
+msgstr ""
+"Du brauchst ein kostenloses <a href=\"https://zapier.com/\" "
+"target=\"_blank\">Zapier</a> Konto, um dieses Plugin nutzen zu können."
+
+#: simple-posting.php:171
+msgid "Contact"
+msgstr "Kontakt"
+
+#: simple-posting.php:172
+msgid ""
+"If you got a question, found an error or looking for a feature write us a "
+"message."
+msgstr ""
+"Wenn du eine Frage hast, einen Fehler gefunden hast oder eine Funktion "
+"brauchst, schreib uns eine Nachricht."
+
+#: simple-posting.php:173
+msgid "Contact us"
+msgstr "Kontakt  aufnehmen"
+
+#: simple-posting.php:177
+msgid "User Guide"
+msgstr "Benutzerhandbuch"
+
+#: simple-posting.php:178
+msgid "Check out user guide for further information about plugin usage."
+msgstr ""
+"Weitere Informationen zur Verwendung von Plugins findest du im "
+"Benutzerhandbuch."
+
+#: simple-posting.php:179
+msgid "Go to user guide"
+msgstr "Zum Benutzerhandbuch"
+
+#: simple-posting.php:191
+msgid ""
+"<h2>Unfortunately, you are not authorized to change settings.</h2><h3 "
+"style=\"margin-bottom:20px\">Please contact an administrator.</h3>"
+msgstr ""
+"<h2>Du bist leider nicht berechtigt die Einstellungen zu ändern.</h2><h3 "
+"style=\"margin-bottom:20px\">Bitte wende dich an einen Administrator.</h3>"
+
+#: simple-posting.php:214
+msgid "Category"
+msgstr "Kategorie"
+
+#: simple-posting.php:215
+msgid "Search Category"
+msgstr "Kategorie suchen"
+
+#: simple-posting.php:216
+msgid "All Categories"
+msgstr "Alle Kategorien"
+
+#: simple-posting.php:217 simple-posting.php:218
+msgid "Parent Category"
+msgstr "Übergeordnete Kategorie"
+
+#: simple-posting.php:219
+msgid "Edit Category"
+msgstr "Kategorie bearbeiten"
+
+#: simple-posting.php:220
+msgid "Update Category"
+msgstr "Kategorie aktualisieren"
+
+#: simple-posting.php:221
+msgid "New Category"
+msgstr "Neue Kategorie"
+
+#: simple-posting.php:222
+msgid "New Category Name"
+msgstr "Name der neuen Kategorie"
+
+#: simple-posting.php:240
+msgid "Topic"
+msgstr "Thema"
+
+#: simple-posting.php:241
+msgid "Search Topics"
+msgstr "Themen suchen"
+
+#: simple-posting.php:242
+msgid "Popular Topics"
+msgstr "Angesagte Themen"
+
+#: simple-posting.php:243
+msgid "All Topics"
+msgstr "Alle Themen"
+
+#: simple-posting.php:246
+msgid "Edit Topic"
+msgstr "Thema bearbeiten"
+
+#: simple-posting.php:247
+msgid "Update Topic"
+msgstr "Thema aktualisieren"
+
+#: simple-posting.php:248
+msgid "Add New Topic"
+msgstr "Neues Thema erstellen"
+
+#: simple-posting.php:249
+msgid "New Topic Name"
+msgstr "Neues Thema"
+
+#: simple-posting.php:251
+msgid "Add or remove topics"
+msgstr "Themen erstellen oder entfernen"
+
+#: simple-posting.php:252
+msgid "Choose from the most used topics"
+msgstr "Wähle aus den meistgenutzten Themen"
+
+#. Plugin Name of the plugin/theme
+#: simple-posting.php:268 simple-posting.php:269 simple-posting.php:270
+#: simple-posting.php:284
+msgid "Simple Posting"
+msgstr "Simple Posting"
+
+#: simple-posting.php:271 simple-posting.php:285
+msgid "Simple Postings"
+msgstr "Simple Posting"
+
+#: simple-posting.php:273
+msgid "View Posting"
+msgstr "Posting ansehen"
+
+#: simple-posting.php:274 simple-posting.php:275
+msgid "Add Posting"
+msgstr "Neues Posting erstellen"
+
+#: simple-posting.php:276
+msgid "Edit Posting"
+msgstr "Posting bearbeiten"
+
+#: simple-posting.php:277
+msgid "Update Posting"
+msgstr "Posting aktualisieren"
+
+#: simple-posting.php:278
+msgid "Search Postings"
+msgstr "Posting suchen"
+
+#: simple-posting.php:279
+msgid "No Postings found."
+msgstr "Keine Postings gefunden."
+
+#: simple-posting.php:280
+msgid "No Posting found."
+msgstr "Kein Posting gefunden."
+
+#: simple-posting.php:342
+msgid "Social Media Channels"
+msgstr "Social-Media-Kanäle"
+
+#: simple-posting.php:362
+msgid ""
+"If you change something here please save post first before you plan it.<br>"
+msgstr ""
+"Wenn du hier etwas änderst, speichere bitte zuerst das Posting, bevor du es "
+"planst.<br>"
+
+#: simple-posting.php:379
+msgid ""
+"Please activate at least one channel on <a href=\"/wp-admin/admin.php?"
+"page=simple-posting\">settings</a> page."
+msgstr ""
+"Bitte aktiviere mindestens einen Kanal auf der <a href=\"/wp-admin/admin.php?"
+"page=simple-posting\">Einstellungsseite</a>."
+
+#: simple-posting.php:394
+msgid ""
+"Enter an Alt Tag for your featured image. This tag is different to the field "
+"you´ll fill out unter Media.<br>"
+msgstr ""
+"Gib ein Alt-Tag für dein ausgewähltes Bild ein. Dieses Tag unterscheidet "
+"sich von dem Feld, das du unter Medien ausfüllst.<br>"
+
+#: simple-posting.php:538
+msgid "Please enter a name for Zapier Webhook "
+msgstr "Bitte gib einen Namen für diesen Zapier Webhook ein "
+
+#: simple-posting.php:548
+msgid "Settings saved."
+msgstr "Einstellungen wurde gespeichert."
+
+#: simple-posting.php:659
+msgid "Duplicate Posting"
+msgstr "Posting duplizieren"
+
+#: simple-posting.php:659
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+#: simple-posting.php:686
+msgid "Posting couldn´t be duplicated."
+msgstr "Posting konnte nicht dupliziert werden."
+
+#. Description of the plugin/theme
+msgid ""
+"Send planned Post(ing) to a maximum of 5 Zapier Webhooks. Free Zapier "
+"account needed in order to use this plugin."
+msgstr ""
+"Sende ein geplantes Posting zu einem Maximum von 5 Zapier Webhooks. Ein "
+"kostenloses Zapier Konto wird benötigt, um dieses Plugin zu nutzen."
+
+#. Author of the plugin/theme
+msgid "VisPre e.K."
+msgstr "VisPre e.K."
+
+#. Author URI of the plugin/theme
+msgid "https://stephanie-ruderer.de"
+msgstr "https://stephanie-ruderer.de"
+
+#~ msgid "Please enter an alt tag for your image."
+#~ msgstr "Bitte gib ein Alt-Tag für dein Bild ein."
+
+#, fuzzy
+#~| msgid "https://stephanie-ruderer.de"
+#~ msgid "https://stephanie-ruderer.de/simple-posting-en"
+#~ msgstr "https://stephanie-ruderer.de"
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "Go to description"
+#~ msgstr "Zur Beschreibung gehen"
+
+#~ msgid "Send planned post to a maximum of 5 zapier hooks."
+#~ msgstr "Sende einen geplanten Beitrag an maximal 5 Zapier-Hooks."
+
+#~ msgid "Please enter a name for Zapier Webhook 3."
+#~ msgstr "Bitte gib einen Namen für Zapier Webhook 3 ein."
+
+#~ msgid "Please enter a name for Zapier Webhook 4."
+#~ msgstr "Bitte gib einen Namen für Zapier Webhook 4 ein."
+
+#~ msgid "Please enter a name for Zapier Webhook 5."
+#~ msgstr "Bitte gib einen Namen für Zapier Webhook 5 ein."
+
+#~ msgid "Posts"
+#~ msgstr "Beiträge"
+
+#~ msgid "All Posts"
+#~ msgstr "Alle Postings"
+
+#~ msgid "Add post"
+#~ msgstr "Posting erstellen"
+
+#~ msgid "All Simple Postings"
+#~ msgstr "Alle Simple Postings"
+
+#~ msgid "Simple Posts"
+#~ msgstr "Simple Posts"
+
+#~ msgid "Simple Post"
+#~ msgstr "Simple Post"
