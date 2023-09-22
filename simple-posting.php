@@ -30,8 +30,8 @@ class Simple_Posting {
         $this->define_constants();
         $this->set_capabilities();
         if ($this->simple_posting_settings == null || $this->simple_posting_settings == '') {
-            $count = 1;
             $default_options = array();
+            $count = 1;
             while ($count < SIMPLE_POSTING_NUMBER) {
                 $default_options['zapier_' . $count] = '';
                 $count++;
@@ -89,9 +89,9 @@ class Simple_Posting {
      */
     public function admin_menu() {
         if (current_user_can('manage_options')) {
-            add_menu_page('Simple Posting', 'Simple Posting', 'manage_options', 'simple-posting', array($this, 'setting_page_content'), plugin_dir_url(__FILE__) . 'assets/img/favicon.png', 2);
+            add_menu_page('Simple Posting', 'Simple Posting', 'manage_options', 'simple-posting', array($this, 'setting_page_content'), esc_url(SIMPLE_POSTING_URI . 'assets/img/favicon.png'), 2);
         } else {
-            add_menu_page('Simple Posting', 'Simple Posting', 'use_simple_posting', 'simple-posting', array($this, 'setting_page_content'), plugin_dir_url(__FILE__) . 'assets/img/favicon.png', 2);
+            add_menu_page('Simple Posting', 'Simple Posting', 'use_simple_posting', 'simple-posting', array($this, 'setting_page_content'), esc_url(SIMPLE_POSTING_URI . 'assets/img/favicon.png'), 2);
         }
         add_submenu_page('simple-posting', esc_html(__('All Postings', 'simple-posting')), esc_html(__('All Postings', 'simple-posting')), 'use_simple_posting', 'edit.php?post_type=simple-post');
         add_submenu_page('simple-posting', esc_html(__('New Posting', 'simple-posting')), esc_html(__('New Posting', 'simple-posting')), 'use_simple_posting', 'post-new.php?post_type=simple-post');
@@ -122,7 +122,7 @@ class Simple_Posting {
      * @return void
      */
     public function admin_scripts_handler() {
-        wp_enqueue_style('simple-posting', SIMPLE_POSTING_URI . 'assets/css/style.min.css', array(), SIMPLE_POSTING_VERSION, 'all');
+        wp_enqueue_style('simple-posting', esc_url(SIMPLE_POSTING_URI . 'assets/css/style.min.css'), array(), SIMPLE_POSTING_VERSION, 'all');
     }
 
     /**
@@ -138,7 +138,7 @@ class Simple_Posting {
         );
         $count = 1;
         while ($count < SIMPLE_POSTING_NUMBER) {
-            add_settings_field('zapier_' . $count, 'Zapier Webhook ' . $count . ':', array($this, 'check_for_key'), 'simple_posting_section', 'simple_posting_section', $count
+            add_settings_field('zapier_' . esc_attr($count), 'Zapier Webhook ' . esc_html($count) . ':', array($this, 'check_for_key'), 'simple_posting_section', 'simple_posting_section', intval($count)
             );
             $count++;
         }
@@ -149,20 +149,22 @@ class Simple_Posting {
     }
 
     /**
-     * Content for module setting defined in register_settings. 
-     * 
+     * Content for module setting defined in register_settings.
+     *
      * @param int $count just a number to differentiate html fields later
      * @return void
      */
     function check_for_key($count) {
-        if (isset($this->simple_posting_settings['key_' . $count . '_is_active'])) {
-            echo '<input id="channel_' . $count . '_name" name="simple_posting_settings[channel_' . $count . '_name]" type="text" class="field-control channel-name" value=' . $this->simple_posting_settings['channel_' . $count . '_name'] . '>';
-            echo '<input id="zapier_' . $count . '" name="simple_posting_settings[zapier_' . $count . ']" type="text" class="field-control" value=' . $this->key_helper($this->simple_posting_settings['zapier_' . $count], 'decrypt') . '>';
-            echo '<input id="key_' . $count . '_is_active" name="simple_posting_settings[key_' . $count . '_is_active]" value="1" type="checkbox" checked>';
+        if (!is_int($count) || $count >= SIMPLE_POSTING_NUMBER)
+            return;
+        if (isset($this->simple_posting_settings['key_' . $count . '_is_active']) && $count < SIMPLE_POSTING_NUMBER) {
+            echo '<input id="channel_' . esc_attr($count) . '_name" name="simple_posting_settings[channel_' . esc_attr($count) . '_name]" type="text" class="field-control channel-name" value=' . esc_html($this->simple_posting_settings['channel_' . $count . '_name']) . '>';
+            echo '<input id="zapier_' . esc_attr($count) . '" name="simple_posting_settings[zapier_' . esc_attr($count) . ']" type="text" class="field-control" value=' . esc_html($this->key_helper($this->simple_posting_settings['zapier_' . $count], 'decrypt')) . '>';
+            echo '<input id="key_' . esc_attr($count) . '_is_active" name="simple_posting_settings[key_' . esc_attr($count) . '_is_active]" value="1" type="checkbox" checked>';
         } else {
-            echo '<input id="channel_' . $count . '_name" name="simple_posting_settings[channel_' . $count . '_name]" type="text" class="field-control channel-name" value="">';
-            echo '<input id="zapier_' . $count . '" name="simple_posting_settings[zapier_' . $count . ']" type="text" class="field-control" value="">';
-            echo '<input id="key_' . $count . '_is_active" name="simple_posting_settings[key_' . $count . '_is_active]" value="1" type="checkbox" >';
+            echo '<input id="channel_' . esc_attr($count) . '_name" name="simple_posting_settings[channel_' . esc_attr($count) . '_name]" type="text" class="field-control channel-name" value="">';
+            echo '<input id="zapier_' . esc_attr($count) . '" name="simple_posting_settings[zapier_' . esc_attr($count) . ']" type="text" class="field-control" value="">';
+            echo '<input id="key_' . esc_attr($count) . '_is_active" name="simple_posting_settings[key_' . esc_attr($count) . '_is_active]" value="1" type="checkbox" >';
         }
     }
 
@@ -175,20 +177,20 @@ class Simple_Posting {
     public function setting_page_content() {
         ?>
         <div class="wrap">
-            <h1><?php echo 'Simple Posting ' . ' <span class="version">' . SIMPLE_POSTING_VERSION . '</span>'; ?></h1>
+            <h1><?php echo 'Simple Posting <span class="version">' . esc_html(SIMPLE_POSTING_VERSION) . '</span>'; ?></h1>
             <div class='page-wrapper'>
                 <div class="row">
                     <div class="column help">
-                        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/bubble.svg'; ?>" class="icon"> 
-                        <h2><?php echo esc_html(__('Contact', 'simple-posting')); ?></h2>
-                        <p> <?php echo esc_html(__('If you got a question, found an error or looking for a feature write us a message.', 'simple-posting')); ?></p>
-                        <a target="_blank" class="button button-primary" href="mailto:support@vispre.com"><?php echo esc_html(__('Contact us', 'simple-posting')); ?></a>
+                        <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/bubble.svg'); ?>" class="icon">
+                        <h2><?php esc_html_e(__('Contact', 'simple-posting')); ?></h2>
+                        <p> <?php esc_html_e(__('If you got a question, found an error or looking for a feature write us a message.', 'simple-posting')); ?></p>
+                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('mailto:support@vispre.com'); ?>"><?php esc_html_e(__('Contact us', 'simple-posting')); ?></a>
                     </div>
                     <div class="column description">
-                        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/folder.svg'; ?>" class="icon"> 
-                        <h2><?php echo esc_html(__('User Guide', 'simple-posting')); ?></h2>
-                        <p> <?php echo esc_html(__('Check out user guide for further information about plugin usage.', 'simple-posting')); ?></p>
-                        <a target="_blank" class="button button-primary" href="https://stephanie-ruderer.de/simple-posting/"><?php echo esc_html(__('Go to user guide', 'simple-posting')); ?></a>
+                        <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/folder.svg'); ?>" class="icon">
+                        <h2><?php esc_html_e(__('User Guide', 'simple-posting')); ?></h2>
+                        <p> <?php esc_html_e(__('Check out user guide for further information about plugin usage.', 'simple-posting')); ?></p>
+                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('https://stephanie-ruderer.de/simple-posting/'); ?>"><?php esc_html_e(__('Go to user guide', 'simple-posting')); ?></a>
                     </div>
                 </div>
                 <div class="row">
@@ -200,7 +202,7 @@ class Simple_Posting {
                                 do_settings_sections('simple_posting_section');
                                 submit_button();
                             } else {
-                                echo esc_html(__('<h2>Unfortunately, you are not authorized to change settings.</h2><h3 style="margin-bottom:20px">Please contact an administrator.</h3>', 'simple-posting'));
+                                esc_html_e(__('<h2>Unfortunately, you are not authorized to change settings.</h2><h3 style="margin-bottom:20px">Please contact an administrator.</h3>', 'simple-posting'));
                             }
                             ?>
                         </form>
@@ -213,7 +215,7 @@ class Simple_Posting {
 
     /**
      * Register custom post type, custom category and tags.
-     * 
+     *
      * @since 1.0.0
      * @return void
      */
@@ -326,7 +328,7 @@ class Simple_Posting {
      * @return void
      */
     public function add_posting_templates_to_query($query) {
-        if (is_home() && $query->is_main_query())
+        if (is_home() && isset($query) && $query->is_main_query())
             $query->set('post_type', array('post', $this->post_type));
         return $query;
     }
@@ -371,24 +373,25 @@ class Simple_Posting {
 
         global $post;
         wp_nonce_field(basename(__FILE__), 'social_channels');
-        echo '<p>' . __('If you change something here please save post first before you plan it.<br>', 'simple-posting') . '</p>';
+        echo '<p>' . esc_html(__('If you change something here please save post first before you plan it.', 'simple-posting')) . '</p>';
 
         $channels = 0;
         $count = 1;
         while ($count < SIMPLE_POSTING_NUMBER) {
             $key_check = '';
-            if ($this->simple_posting_settings['zapier_' . $count] !== '' && $this->simple_posting_settings['key_' . $count . '_is_active']) {
-                $channel = get_post_meta($post->ID, 'channel_' . $count, true);
-                $channel_name = $this->simple_posting_settings['channel_' . $count . '_name'];
-                if ($channel == 1)
+            if (isset($this->simple_posting_settings['zapier_' . $count]) && strlen(trim($this->simple_posting_settings['zapier_' . $count])) > 0 && $this->simple_posting_settings['key_' . $count . '_is_active']) {
+                $channel_active = sanitize_text_field(get_post_meta($post->ID, 'channel_' . $count, true));
+                $channel_name = sanitize_text_field($this->simple_posting_settings['channel_' . $count . '_name']);
+                if (intval($channel_active) === 1)
                     $key_check = 'checked';
-                echo '<label for="channel_' . $count . '">' . $channel_name . '</label><input id="channel_' . $count . '" name="channel_' . $count . '" value="1" type="checkbox" ' . $key_check . ' />';
+                if ($channel_name !== '')
+                    echo '<label for="channel_' . esc_attr($count) . '">' . esc_html($channel_name) . '</label><input id="channel_' . esc_attr($count) . '" name="channel_' . esc_attr($count) . '" value="1" type="checkbox" ' . esc_attr($key_check) . ' />';
                 $channels++;
             }
             $count++;
         }
         if ($channels === 0)
-            echo __('Please activate at least one channel on <a href="' . esc_url(get_admin_url()) . 'admin.php?page=simple-posting">settings</a> page.', 'simple-posting');
+            echo esc_html(__('Please activate at least one channel on ', 'simple-posting')) . '<a href="' . esc_url(get_admin_url() . 'admin.php?page=simple-posting') . '">' . esc_html(__('settings', 'simple-posting')) . '</a>' . esc_html(__(' page.', 'simple-posting'));
     }
 
     /**
@@ -403,8 +406,8 @@ class Simple_Posting {
 
         global $post;
         wp_nonce_field(basename(__FILE__), 'alt_tag');
-        echo '<p>' . esc_html(__('Enter an Alt Tag for your featured image. This tag is different to the field you´ll fill out unter Media.<br>', 'simple-posting')) . '</p>';
-        echo '<input id="posting_alt_tag" name="posting_alt_tag" type="text" class="field-control" style="width:100%" value="' . esc_attr(get_post_meta($post->ID, 'posting_alt_tag', true)) . '">';
+        echo '<p>' . esc_html(__('Enter an Alt Tag for your featured image. This tag is different to the field you´ll fill out unter Media.', 'simple-posting')) . '</p>';
+        echo '<input id="posting_alt_tag" name="posting_alt_tag" type="text" class="field-control" style="width:100%" value="' . esc_html(get_post_meta($post->ID, 'posting_alt_tag', true)) . '">';
     }
 
     /**
@@ -425,9 +428,11 @@ class Simple_Posting {
 
         $count = 1;
         while ($count < SIMPLE_POSTING_NUMBER) {
-            $channel = sanitize_text_field($_POST['channel_' . $count]);
-            if ($channel !== '')
-                $channels['channel_' . $count] = $channel;
+            if (isset($_POST['channel_' . $count])) {
+                $channels['channel_' . $count] = 1;
+            } else {
+                $channels['channel_' . $count] = 0;
+            }
             $count++;
         }
 
@@ -445,8 +450,8 @@ class Simple_Posting {
 
         if (!isset($_POST['posting_alt_tag']))
             return;
-        $alt_tag = sanitize_text_field($_POST['posting_alt_tag']);
-        if ($alt_tag !== '')
+        $alt_tag = sanitize_text_field(wp_unslash($_POST['posting_alt_tag']));
+        if (strlen($alt_tag) > 0)
             update_post_meta($post_id, 'posting_alt_tag', $alt_tag);
     }
 
@@ -472,18 +477,35 @@ class Simple_Posting {
             return;
 
         $zap_data = array();
-        $zap_data['post_title'] = $post->post_title;
-        $zap_data['post_content'] = str_replace('&nbsp;', '', $post->post_content);
-        $zap_data['post_date'] = $post->post_date;
-        $zap_data['post_image'] = get_the_post_thumbnail_url($post->ID, 'full');
-        $zap_data['alt_tag'] = get_post_meta($post->ID, 'posting_alt_tag', true);
+
+        $zap_data['post_title'] = '';
+        if (strlen(wp_unslash($post->post_title)) > 0)
+            $zap_data['post_title'] = sanitize_text_field(wp_unslash($post->post_title));
+
+        $zap_data['post_content'] = '';
+        if (strlen(wp_unslash($post->post_content)) > 0)
+            $zap_data['post_content'] = wp_kses_post(str_replace('&nbsp;', '', $post->post_content));
+
+        $date = date('Y-m-d H:i:s', strtotime('5 minute'));
+        if ($this->validateDate($post->post_date) && $post->post_date > $date) {
+            $zap_data['post_date'] = $post->post_date;
+        } else {
+            $zap_data['post_date'] = $date;
+        }
+
+        if (has_post_thumbnail($post))
+            $zap_data['post_image'] = sanitize_url(get_the_post_thumbnail_url($post->ID, 'full'));
+
+        $alt_tag = sanitize_text_field(wp_unslash(get_post_meta($post->ID, 'posting_alt_tag', true)));
+        if (strlen($alt_tag) > 0)
+            $zap_data['alt_tag'] = $alt_tag;
 
         $count = 1;
         while ($count < SIMPLE_POSTING_NUMBER) {
             if (get_post_meta($post->ID, 'channel_' . $count, true)) {
                 $webhook_url = $this->simple_posting_settings['zapier_' . $count];
-                if ($webhook_url !== '') {
-                    $webhook_url = $this->key_helper($webhook_url, 'decrypt');
+                if (strlen($webhook_url) > 0) {
+                    $webhook_url = sanitize_url($this->key_helper($webhook_url, 'decrypt'));
                     $this->send_to_zapier($webhook_url, $zap_data);
                 }
             }
@@ -494,7 +516,7 @@ class Simple_Posting {
     /**
      * Sends data to Zapier Webhook URL.
      * No returning message as Zapier will send an email if something is wrong.
-     * 
+     *
      * @param string $url
      * @param array $zap_data
      * @since 1.0.0
@@ -529,7 +551,7 @@ class Simple_Posting {
 
     /**
      * Validates fields before storing in database.
-     * 
+     *
      * @param type $fields labels, webhook urls, checkboxes
      * @since 1.0.0
      * @return type
@@ -542,9 +564,9 @@ class Simple_Posting {
 
         $count = 1;
         while ($count < SIMPLE_POSTING_NUMBER) {
-            $webhook = trim($fields['zapier_' . $count]);
-            $channel_name = trim($fields['channel_' . $count . '_name']);
-            $checkbox = trim($fields['key_' . $count . '_is_active']);
+            $webhook = sanitize_text_field(wp_unslash($fields['zapier_' . $count]));
+            $channel_name = sanitize_text_field(wp_unslash($fields['channel_' . $count . '_name']));
+            $checkbox = sanitize_text_field($fields['key_' . $count . '_is_active']);
             if (isset($webhook) && $webhook !== '') {
                 $valid_fields['zapier_' . $count] = $this->key_helper($webhook, 'encrypt');
                 if (isset($checkbox) && $checkbox !== '')
@@ -552,7 +574,7 @@ class Simple_Posting {
                 if (isset($channel_name) && $channel_name !== '') {
                     $valid_fields['channel_' . $count . '_name'] = $channel_name;
                 } else {
-                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', __('Please enter a name for Zapier Webhook ' . $count . '.', 'simple-posting'), 'error');
+                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', __('Please enter a name for Zapier Webhook ' . esc_html($count) . '.', 'simple-posting'), 'error');
                     $error_count++;
                 }
             } else {
@@ -562,7 +584,7 @@ class Simple_Posting {
         }
 
         if ($error_count == 0)
-            add_settings_error('simple_posting_settings_errors', 'settings_saved_success', __('Settings saved.', 'simple-posting'), 'success');
+            add_settings_error('simple_posting_settings_errors', 'settings_saved_success', esc_html(__('Settings saved.', 'simple-posting')), 'success');
 
         return apply_filters('validate_options', $valid_fields, $fields);
     }
@@ -619,7 +641,7 @@ class Simple_Posting {
 
     /**
      * Highlights simple posting menu if custom category or topics submenu is active.
-     * 
+     *
      * @global type $current_screen
      * @param string $parent_file
      * @since 1.0.0
@@ -635,7 +657,7 @@ class Simple_Posting {
 
     /**
      * Highlights according submenu if posting categories or topics are selected.
-     * 
+     *
      * @global type $current_screen
      * @param string $parent_file
      * @since 1.0.0
@@ -663,7 +685,7 @@ class Simple_Posting {
 
     /**
      * Adds duplicate link to posting list.
-     * 
+     *
      * @param array $actions
      * @param WP_Post $post
      * @since 1.0.0
@@ -672,15 +694,15 @@ class Simple_Posting {
     function duplicate_posting_menu_link($actions, $post) {
         if (!current_user_can('use_simple_posting'))
             return;
-        if ($post->post_type == $this->post_type) {
-            $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=duplicate_posting_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="' . __('Duplicate Posting', 'simple-posting') . '" rel="permalink">' . __('Duplicate', 'simple-posting') . '</a>';
+        if (isset($actions) && $post->post_type == $this->post_type) {
+            $actions['duplicate'] = '<a href="' . wp_nonce_url(esc_url('admin.php?action=duplicate_posting_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce')) . '" title="' . esc_html(__('Duplicate Posting', 'simple-posting')) . '" rel="permalink">' . esc_html(__('Duplicate', 'simple-posting')) . '</a>';
         }
         return $actions;
     }
 
     /**
      * Duplicates posting.
-     * 
+     *
      * @since 1.0.0
      * @return void
      */
@@ -688,8 +710,8 @@ class Simple_Posting {
         if (!current_user_can('use_simple_posting'))
             return;
         global $wpdb;
-        $post_copy = sanitize_text_field($_POST['post']);
-        $get_copy = sanitize_text_field($_GET['post']);
+        $post_copy = wp_kses_post($_POST['post']);
+        $get_copy = wp_kses_post($_GET['post']);
         $request_copy = sanitize_text_field($_REQUEST['action']);
 
         if (!( isset($get_copy) || isset($post_copy) || ( isset($request_copy) && 'save_duplicate_posting_as_draft' == $request_copy ) ))
@@ -700,7 +722,7 @@ class Simple_Posting {
         $current_user = wp_get_current_user();
 
         if (!isset($post) || $post == null) {
-            add_settings_error('simple_posting_settings_errors', 'duplicate_posting_error', __('Posting couldn´t be duplicated.', 'simple-posting'), 'error');
+            add_settings_error('simple_posting_settings_errors', 'duplicate_posting_error', esc_html(__('Posting couldn´t be duplicated.', 'simple-posting')), 'error');
             return;
         }
 
@@ -734,7 +756,7 @@ class Simple_Posting {
             foreach ($post_meta_infos as $meta_info) {
                 $meta_key = $meta_info->meta_key;
                 $meta_value = addslashes($meta_info->meta_value);
-                $sql_query_sel[] = 'SELECT' . $new_post_id . ', ' . $meta_key . ', ' . $meta_value;
+                $sql_query_sel[] = 'SELECT' . esc_sql($new_post_id) . ', ' . esc_sql($meta_key) . ', ' . esc_sql($meta_value);
             }
             $sql_query .= implode(' UNION ALL ', $sql_query_sel);
             $wpdb->query($sql_query);
@@ -744,7 +766,7 @@ class Simple_Posting {
 
     /**
      * Disables Gutenberg editor for this post type as we need a wysiwyg editor.
-     * 
+     *
      * @param bool $current_status gutenberg yes or no
      * @param string $post_type
      * @since 1.0.0
@@ -757,18 +779,16 @@ class Simple_Posting {
     }
 
     /**
+     * Checks if given date is valid Timestamp.
      * 
-     * @global object $wpdb
-     * @param string $option_name
+     * @global DateTime $date
+     * @param string $format
      * @since 1.0.0
      * @return bool
      */
-    function option_exists($option_name) {
-        global $wpdb;
-        $row = $wpdb->get_row($wpdb->prepare("SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option_name));
-        if (is_object($row))
-            return true;
-        return false;
+    function validateDate($date, $format = 'Y-m-d H:i:s') {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
     }
 
 }

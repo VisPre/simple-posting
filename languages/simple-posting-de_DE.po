@@ -1,16 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Simple Posting\n"
-"POT-Creation-Date: 2023-05-04 12:07+0200\n"
-"PO-Revision-Date: 2023-05-04 12:07+0200\n"
+"POT-Creation-Date: 2023-09-21 20:50+0200\n"
+"PO-Revision-Date: 2023-09-21 20:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: simple-posting.php\n"
@@ -21,39 +20,39 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: simple-posting.php:87 simple-posting.php:272
+#: simple-posting.php:96 simple-posting.php:284
 msgid "All Postings"
 msgstr "Alle Postings"
 
-#: simple-posting.php:88
+#: simple-posting.php:97
 msgid "New Posting"
 msgstr "Erstellen"
 
-#: simple-posting.php:89 simple-posting.php:213 simple-posting.php:223
+#: simple-posting.php:98 simple-posting.php:225 simple-posting.php:235
 msgid "Categories"
 msgstr "Kategorien"
 
-#: simple-posting.php:90 simple-posting.php:239 simple-posting.php:253
+#: simple-posting.php:99 simple-posting.php:251 simple-posting.php:265
 msgid "Topics"
 msgstr "Themen"
 
-#: simple-posting.php:128
+#: simple-posting.php:137
 msgid "Plugin settings"
 msgstr "Plugin-Einstellungen"
 
-#: simple-posting.php:139
-msgid ""
-"You need a free <a href=\"https://zapier.com/\" target=\"_blank\">Zapier</a> "
-"account in order to use this plugin."
-msgstr ""
-"Du brauchst ein kostenloses <a href=\"https://zapier.com/\" "
-"target=\"_blank\">Zapier</a> Konto, um dieses Plugin nutzen zu können."
+#: simple-posting.php:148
+msgid "You need a free "
+msgstr "Du benötigst ein kostenloses "
 
-#: simple-posting.php:171
+#: simple-posting.php:148
+msgid " account in order to use this plugin."
+msgstr " Konto, um dieses Plugin nutzen zu können."
+
+#: simple-posting.php:183
 msgid "Contact"
 msgstr "Kontakt"
 
-#: simple-posting.php:172
+#: simple-posting.php:184
 msgid ""
 "If you got a question, found an error or looking for a feature write us a "
 "message."
@@ -61,25 +60,25 @@ msgstr ""
 "Wenn du eine Frage hast, einen Fehler gefunden hast oder eine Funktion "
 "brauchst, schreib uns eine Nachricht."
 
-#: simple-posting.php:173
+#: simple-posting.php:185
 msgid "Contact us"
 msgstr "Kontakt  aufnehmen"
 
-#: simple-posting.php:177
+#: simple-posting.php:189
 msgid "User Guide"
 msgstr "Benutzerhandbuch"
 
-#: simple-posting.php:178
+#: simple-posting.php:190
 msgid "Check out user guide for further information about plugin usage."
 msgstr ""
-"Weitere Informationen zur Verwendung von Plugins findest du im "
+"Weitere Informationen zur Verwendung des Plugins findest du im "
 "Benutzerhandbuch."
 
-#: simple-posting.php:179
+#: simple-posting.php:191
 msgid "Go to user guide"
 msgstr "Zum Benutzerhandbuch"
 
-#: simple-posting.php:191
+#: simple-posting.php:203
 msgid ""
 "<h2>Unfortunately, you are not authorized to change settings.</h2><h3 "
 "style=\"margin-bottom:20px\">Please contact an administrator.</h3>"
@@ -87,160 +86,163 @@ msgstr ""
 "<h2>Du bist leider nicht berechtigt die Einstellungen zu ändern.</h2><h3 "
 "style=\"margin-bottom:20px\">Bitte wende dich an einen Administrator.</h3>"
 
-#: simple-posting.php:214
+#: simple-posting.php:226
 msgid "Category"
 msgstr "Kategorie"
 
-#: simple-posting.php:215
+#: simple-posting.php:227
 msgid "Search Category"
 msgstr "Kategorie suchen"
 
-#: simple-posting.php:216
+#: simple-posting.php:228
 msgid "All Categories"
 msgstr "Alle Kategorien"
 
-#: simple-posting.php:217 simple-posting.php:218
+#: simple-posting.php:229 simple-posting.php:230
 msgid "Parent Category"
 msgstr "Übergeordnete Kategorie"
 
-#: simple-posting.php:219
+#: simple-posting.php:231
 msgid "Edit Category"
 msgstr "Kategorie bearbeiten"
 
-#: simple-posting.php:220
+#: simple-posting.php:232
 msgid "Update Category"
 msgstr "Kategorie aktualisieren"
 
-#: simple-posting.php:221
+#: simple-posting.php:233
 msgid "New Category"
 msgstr "Neue Kategorie"
 
-#: simple-posting.php:222
+#: simple-posting.php:234
 msgid "New Category Name"
 msgstr "Name der neuen Kategorie"
 
-#: simple-posting.php:240
+#: simple-posting.php:252
 msgid "Topic"
 msgstr "Thema"
 
-#: simple-posting.php:241
+#: simple-posting.php:253
 msgid "Search Topics"
 msgstr "Themen suchen"
 
-#: simple-posting.php:242
+#: simple-posting.php:254
 msgid "Popular Topics"
 msgstr "Angesagte Themen"
 
-#: simple-posting.php:243
+#: simple-posting.php:255
 msgid "All Topics"
 msgstr "Alle Themen"
 
-#: simple-posting.php:246
+#: simple-posting.php:258
 msgid "Edit Topic"
 msgstr "Thema bearbeiten"
 
-#: simple-posting.php:247
+#: simple-posting.php:259
 msgid "Update Topic"
 msgstr "Thema aktualisieren"
 
-#: simple-posting.php:248
+#: simple-posting.php:260
 msgid "Add New Topic"
 msgstr "Neues Thema erstellen"
 
-#: simple-posting.php:249
+#: simple-posting.php:261
 msgid "New Topic Name"
 msgstr "Neues Thema"
 
-#: simple-posting.php:251
+#: simple-posting.php:263
 msgid "Add or remove topics"
 msgstr "Themen erstellen oder entfernen"
 
-#: simple-posting.php:252
+#: simple-posting.php:264
 msgid "Choose from the most used topics"
 msgstr "Wähle aus den meistgenutzten Themen"
 
 #. Plugin Name of the plugin/theme
-#: simple-posting.php:268 simple-posting.php:269 simple-posting.php:270
-#: simple-posting.php:284
+#: simple-posting.php:280 simple-posting.php:281 simple-posting.php:282
+#: simple-posting.php:296
 msgid "Simple Posting"
 msgstr "Simple Posting"
 
-#: simple-posting.php:271 simple-posting.php:285
+#: simple-posting.php:283 simple-posting.php:297
 msgid "Simple Postings"
 msgstr "Simple Posting"
 
-#: simple-posting.php:273
+#: simple-posting.php:285
 msgid "View Posting"
 msgstr "Posting ansehen"
 
-#: simple-posting.php:274 simple-posting.php:275
+#: simple-posting.php:286 simple-posting.php:287
 msgid "Add Posting"
 msgstr "Neues Posting erstellen"
 
-#: simple-posting.php:276
+#: simple-posting.php:288
 msgid "Edit Posting"
 msgstr "Posting bearbeiten"
 
-#: simple-posting.php:277
+#: simple-posting.php:289
 msgid "Update Posting"
 msgstr "Posting aktualisieren"
 
-#: simple-posting.php:278
+#: simple-posting.php:290
 msgid "Search Postings"
 msgstr "Posting suchen"
 
-#: simple-posting.php:279
+#: simple-posting.php:291
 msgid "No Postings found."
 msgstr "Keine Postings gefunden."
 
-#: simple-posting.php:280
+#: simple-posting.php:292
 msgid "No Posting found."
 msgstr "Kein Posting gefunden."
 
-#: simple-posting.php:342
+#: simple-posting.php:354
 msgid "Social Media Channels"
 msgstr "Social-Media-Kanäle"
 
-#: simple-posting.php:362
-msgid ""
-"If you change something here please save post first before you plan it.<br>"
+#: simple-posting.php:374
+msgid "If you change something here please save post first before you plan it."
 msgstr ""
 "Wenn du hier etwas änderst, speichere bitte zuerst das Posting, bevor du es "
-"planst.<br>"
+"planst."
 
-#: simple-posting.php:379
-msgid ""
-"Please activate at least one channel on <a href=\"/wp-admin/admin.php?"
-"page=simple-posting\">settings</a> page."
-msgstr ""
-"Bitte aktiviere mindestens einen Kanal auf der <a href=\"/wp-admin/admin.php?"
-"page=simple-posting\">Einstellungsseite</a>."
+#: simple-posting.php:391
+msgid "Please activate at least one channel on "
+msgstr "Bitte aktiviere mindestens einen Kanal unter "
 
-#: simple-posting.php:394
+#: simple-posting.php:391
+msgid "settings"
+msgstr "Einstellungen"
+
+#: simple-posting.php:391
+msgid " page."
+msgstr "."
+
+#: simple-posting.php:406
 msgid ""
 "Enter an Alt Tag for your featured image. This tag is different to the field "
-"you´ll fill out unter Media.<br>"
+"you´ll fill out unter Media."
 msgstr ""
 "Gib ein Alt-Tag für dein ausgewähltes Bild ein. Dieses Tag unterscheidet "
-"sich von dem Feld, das du unter Medien ausfüllst.<br>"
+"sich von dem Feld, das du unter Medien ausfüllst."
 
-#: simple-posting.php:538
+#: simple-posting.php:568
 msgid "Please enter a name for Zapier Webhook "
 msgstr "Bitte gib einen Namen für diesen Zapier Webhook ein "
 
-#: simple-posting.php:548
+#: simple-posting.php:578
 msgid "Settings saved."
 msgstr "Einstellungen wurde gespeichert."
 
-#: simple-posting.php:659
+#: simple-posting.php:689
 msgid "Duplicate Posting"
 msgstr "Posting duplizieren"
 
-#: simple-posting.php:659
+#: simple-posting.php:689
 msgid "Duplicate"
 msgstr "Duplizieren"
 
-#: simple-posting.php:686
+#: simple-posting.php:716
 msgid "Posting couldn´t be duplicated."
 msgstr "Posting konnte nicht dupliziert werden."
 
@@ -259,6 +261,20 @@ msgstr "VisPre e.K."
 #. Author URI of the plugin/theme
 msgid "https://stephanie-ruderer.de"
 msgstr "https://stephanie-ruderer.de"
+
+#~ msgid ""
+#~ "You need a free <a href=\"https://zapier.com/\" target=\"_blank\">Zapier</"
+#~ "a> account in order to use this plugin."
+#~ msgstr ""
+#~ "Du brauchst ein kostenloses <a href=\"https://zapier.com/\" "
+#~ "target=\"_blank\">Zapier</a> Konto, um dieses Plugin nutzen zu können."
+
+#~ msgid ""
+#~ "Please activate at least one channel on <a href=\"/wp-admin/admin.php?"
+#~ "page=simple-posting\">settings</a> page."
+#~ msgstr ""
+#~ "Bitte aktiviere mindestens einen Kanal auf der <a href=\"/wp-admin/admin."
+#~ "php?page=simple-posting\">Einstellungsseite</a>."
 
 #~ msgid "Please enter an alt tag for your image."
 #~ msgstr "Bitte gib ein Alt-Tag für dein Bild ein."
