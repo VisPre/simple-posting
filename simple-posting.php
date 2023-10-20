@@ -201,7 +201,7 @@ class Simple_Posting {
                                 do_settings_sections('simple_posting_section');
                                 submit_button();
                             } else {
-                                esc_html_e('<h2>Unfortunately, you are not authorized to change settings.</h2><h3 style="margin-bottom:20px">Please contact an administrator.</h3>', 'simple-posting');
+                                '<h2>' . esc_html_e('Unfortunately, you are not authorized to change settings.', 'simple-posting') . '</h2><h3 style="margin-bottom:20px">' . esc_html_e('Please contact an administrator.', 'simple-posting') . '</h3>';
                             }
                             ?>
                         </form>
