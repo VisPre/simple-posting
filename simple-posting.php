@@ -110,7 +110,6 @@ class Simple_Posting {
         !defined('SIMPLE_POSTING_URI') && define('SIMPLE_POSTING_URI', plugin_dir_url(__FILE__));
         !defined('SIMPLE_POSTING_PLUGIN_DIR') && define('SIMPLE_POSTING_PLUGIN_DIR', plugin_dir_path(__FILE__));
         !defined('SIMPLE_POSTING_SUPPORT') && define('SIMPLE_POSTING_SUPPORT', 'mailto:support@vispre.com');
-        !defined('WC_URI') && define('WC_URI', SIMPLE_POSTING_URI);
         !defined('SIMPLE_POSTING_VERSION') && define('SIMPLE_POSTING_VERSION', '1.0');
         !defined('SIMPLE_POSTING_NUMBER') && define('SIMPLE_POSTING_NUMBER', '6');
     }
@@ -182,15 +181,15 @@ class Simple_Posting {
                 <div class="row">
                     <div class="column help">
                         <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/bubble.svg'); ?>" class="icon">
-                        <h2><?php esc_html_e(__('Contact', 'simple-posting')); ?></h2>
-                        <p> <?php esc_html_e(__('If you got a question, found an error or looking for a feature write us a message.', 'simple-posting')); ?></p>
-                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('mailto:support@vispre.com'); ?>"><?php esc_html_e(__('Contact us', 'simple-posting')); ?></a>
+                        <h2><?php esc_html_e('Contact', 'simple-posting'); ?></h2>
+                        <p> <?php esc_html_e('If you got a question, found an error or looking for a feature write us a message.', 'simple-posting'); ?></p>
+                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('mailto:support@vispre.com'); ?>"><?php esc_html_e('Contact us', 'simple-posting'); ?></a>
                     </div>
                     <div class="column description">
                         <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/folder.svg'); ?>" class="icon">
-                        <h2><?php esc_html_e(__('User Guide', 'simple-posting')); ?></h2>
-                        <p> <?php esc_html_e(__('Check out user guide for further information about plugin usage.', 'simple-posting')); ?></p>
-                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('https://stephanie-ruderer.de/simple-posting/'); ?>"><?php esc_html_e(__('Go to user guide', 'simple-posting')); ?></a>
+                        <h2><?php esc_html_e('User Guide', 'simple-posting'); ?></h2>
+                        <p> <?php esc_html_e('Check out user guide for further information about plugin usage.', 'simple-posting'); ?></p>
+                        <a target="_blank" class="button button-primary" href="<?php echo esc_url('https://stephanie-ruderer.de/simple-posting/'); ?>"><?php esc_html_e('Go to user guide', 'simple-posting'); ?></a>
                     </div>
                 </div>
                 <div class="row">
@@ -202,7 +201,7 @@ class Simple_Posting {
                                 do_settings_sections('simple_posting_section');
                                 submit_button();
                             } else {
-                                esc_html_e(__('<h2>Unfortunately, you are not authorized to change settings.</h2><h3 style="margin-bottom:20px">Please contact an administrator.</h3>', 'simple-posting'));
+                                esc_html_e('<h2>Unfortunately, you are not authorized to change settings.</h2><h3 style="margin-bottom:20px">Please contact an administrator.</h3>', 'simple-posting');
                             }
                             ?>
                         </form>
@@ -391,7 +390,7 @@ class Simple_Posting {
             $count++;
         }
         if ($channels === 0)
-            echo esc_html(__('Please activate at least one channel on ', 'simple-posting')) . '<a href="' . esc_url(get_admin_url() . 'admin.php?page=simple-posting') . '">' . esc_html(__('settings', 'simple-posting')) . '</a>' . esc_html(__(' page.', 'simple-posting'));
+            echo esc_html(__('Please activate at least one channel on ', 'simple-posting')) . '<a href="' . esc_url(get_admin_url() . 'admin.php?page=simple-posting') . '">' . esc_html(__('settings page', 'simple-posting')) . '</a>.';
     }
 
     /**
@@ -421,9 +420,9 @@ class Simple_Posting {
     function save_template_custom_meta($post_id, $post) {
         if (!current_user_can('use_simple_posting', $post_id))
             return;
-        if (!wp_verify_nonce($_POST['social_channels'], basename(__FILE__)))
+        if (!isset($_POST['social_channels']) && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['social_channels'])), basename(__FILE__)))
             return;
-        if (!wp_verify_nonce($_POST['alt_tag'], basename(__FILE__)))
+        if (!isset($_POST['alt_tag']) && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['alt_tag'])), basename(__FILE__)))
             return;
 
         $count = 1;
@@ -574,7 +573,7 @@ class Simple_Posting {
                 if (isset($channel_name) && $channel_name !== '') {
                     $valid_fields['channel_' . $count . '_name'] = $channel_name;
                 } else {
-                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', __('Please enter a name for Zapier Webhook ' . esc_html($count) . '.', 'simple-posting'), 'error');
+                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', __('Please enter a name for Zapier Webhook', 'simple-posting') . ' ' . esc_html($count) . '.', 'error');
                     $error_count++;
                 }
             } else {
