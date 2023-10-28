@@ -749,18 +749,20 @@ class Simple_Posting {
             }
         }
 
-        $post_meta_infos = $wpdb->get_results('SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=' . $post_id);
+        $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->postmeta . ' WHERE post_id=%d', $post_id ), ARRAY_A );
         if (count($post_meta_infos) > 0) {
-            $sql_query = 'INSERT INTO ' . $wpdb->postmeta . ' (post_id, meta_key, meta_value) ';
+            $sql_query = 'INSERT INTO ' . $wpdb->postmeta . ' (post_id, meta_key, meta_value) VALUES ';
             foreach ($post_meta_infos as $meta_info) {
-                $meta_key = $meta_info->meta_key;
-                $meta_value = addslashes($meta_info->meta_value);
-                $sql_query_sel[] = 'SELECT' . esc_sql($new_post_id) . ', ' . esc_sql($meta_key) . ', ' . esc_sql($meta_value);
+                $sql_query_values[] = $wpdb->prepare("(%d, %s, %s)", $new_post_id, $meta_info->meta_key, addslashes($meta_info->meta_value));
             }
-            $sql_query .= implode(' UNION ALL ', $sql_query_sel);
+            $sql_query .= implode(',', $sql_query_values);
             $wpdb->query($sql_query);
         }
-        wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
+        
+        set_post_thumbnail($new_post_id, get_post_thumbnail_id($post));
+        update_post_meta($new_post_id, 'posting_alt_tag', get_post_meta($post_id, 'posting_alt_tag', true));
+        
+       wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
     }
 
     /**
