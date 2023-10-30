@@ -753,7 +753,7 @@ class Simple_Posting {
         if (count($post_meta_infos) > 0) {
             $sql_query = 'INSERT INTO ' . $wpdb->prefix . 'postmeta (post_id, meta_key, meta_value) VALUES '; 
             foreach ($post_meta_infos as $meta_info) {
-                $sql_query_values[] = $wpdb->prepare("(%d, %s, %s)", $new_post_id, $meta_info->meta_key, addslashes($meta_info->meta_value));
+                $sql_query_values[] = $wpdb->prepare("(%d, %s, %s)", $new_post_id, $meta_info['meta_key'], addslashes($meta_info['meta_value']));
             }
             $sql_query .= implode(',', $sql_query_values);
             $wpdb->query($sql_query);
