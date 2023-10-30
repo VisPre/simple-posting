@@ -749,9 +749,9 @@ class Simple_Posting {
             }
         }
 
-        $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->postmeta . ' WHERE post_id=%d', $post_id ), ARRAY_A );
+        $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->prefix . 'postmeta WHERE post_id=%d', $post_id ), ARRAY_A );
         if (count($post_meta_infos) > 0) {
-            $sql_query = 'INSERT INTO ' . $wpdb->postmeta . ' (post_id, meta_key, meta_value) VALUES ';
+            $sql_query = 'INSERT INTO ' . $wpdb->prefix . 'postmeta (post_id, meta_key, meta_value) VALUES '; 
             foreach ($post_meta_infos as $meta_info) {
                 $sql_query_values[] = $wpdb->prepare("(%d, %s, %s)", $new_post_id, $meta_info->meta_key, addslashes($meta_info->meta_value));
             }
