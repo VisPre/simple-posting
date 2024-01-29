@@ -485,11 +485,13 @@ class Simple_Posting {
         if (strlen(wp_unslash($post->post_content)) > 0)
             $zap_data['post_content'] = wp_kses_post(str_replace('&nbsp;', '', $post->post_content));
 
-        $date = date('Y-m-d H:i:s', strtotime('5 minute'));
-        if ($this->validateDate($post->post_date) && $post->post_date > $date) {
-            $zap_data['post_date'] = $post->post_date;
+        $date_time_now = DateTime::createFromImmutable(current_datetime());
+        $date_time_now->modify('+5 minutes'); // add 5 minutes to give Zapier and Buffer time to process the post     
+        $date_time_post = DateTime::createFromImmutable(get_post_datetime($post, 'date', 'local'));  
+        if ($date_time_post > $date_time_now) {
+            $zap_data['post_date'] = $date_time_post->format('Y-m-d H:i:s');
         } else {
-            $zap_data['post_date'] = $date;
+            $zap_data['post_date'] = $date_time_now->format('Y-m-d H:i:s');
         }
 
         if (has_post_thumbnail($post))
@@ -706,7 +708,7 @@ class Simple_Posting {
      * @return void
      */
     function save_duplicate_posting_as_draft() {
-        if (!current_user_can('use_simple_posting'))
+        if (!current_user_can('use_simple_posting') && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['duplicate_nonce'])), basename(__FILE__)))
             return;
         global $wpdb;
         $post_copy = wp_kses_post($_POST['post']);
@@ -751,12 +753,9 @@ class Simple_Posting {
 
         $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->prefix . 'postmeta WHERE post_id=%d', $post_id ), ARRAY_A );
         if (count($post_meta_infos) > 0) {
-            $sql_query = 'INSERT INTO ' . $wpdb->prefix . 'postmeta (post_id, meta_key, meta_value) VALUES '; 
             foreach ($post_meta_infos as $meta_info) {
-                $sql_query_values[] = $wpdb->prepare("(%d, %s, %s)", $new_post_id, $meta_info['meta_key'], addslashes($meta_info['meta_value']));
+                $wpdb->query($wpdb->prepare('INSERT INTO ' . $wpdb->prefix . 'postmeta (post_id, meta_key, meta_value) VALUES ((%d, %s, %s)', $new_post_id, $meta_info['meta_key'], addslashes($meta_info['meta_value'])));
             }
-            $sql_query .= implode(',', $sql_query_values);
-            $wpdb->query($sql_query);
         }
         
         set_post_thumbnail($new_post_id, get_post_thumbnail_id($post));
@@ -777,19 +776,6 @@ class Simple_Posting {
         if ($post_type === $this->post_type)
             return false;
         return $current_status;
-    }
-
-    /**
-     * Checks if given date is valid Timestamp.
-     * 
-     * @global DateTime $date
-     * @param string $format
-     * @since 1.0.0
-     * @return bool
-     */
-    function validateDate($date, $format = 'Y-m-d H:i:s') {
-        $d = DateTime::createFromFormat($format, $date);
-        return $d && $d->format($format) == $date;
     }
 
 }
