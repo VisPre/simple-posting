@@ -110,7 +110,6 @@ class Simple_Posting {
         !defined('SIMPLE_POSTING_URI') && define('SIMPLE_POSTING_URI', plugin_dir_url(__FILE__));
         !defined('SIMPLE_POSTING_PLUGIN_DIR') && define('SIMPLE_POSTING_PLUGIN_DIR', plugin_dir_path(__FILE__));
         !defined('SIMPLE_POSTING_SUPPORT') && define('SIMPLE_POSTING_SUPPORT', 'mailto:support@vispre.com');
-        !defined('SIMPLE_POSTING_VERSION') && define('SIMPLE_POSTING_VERSION', '1.0');
         !defined('SIMPLE_POSTING_NUMBER') && define('SIMPLE_POSTING_NUMBER', '6');
     }
 
