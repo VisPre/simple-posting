@@ -187,7 +187,7 @@ class Simple_Posting {
                     <div class="column description">
                         <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/folder.svg'); ?>" class="icon">
                         <h2><?php esc_html_e('User Guide', 'simple-posting'); ?></h2>
-                        <p><?php esc_html_e('Check out user guide for further information about plugin usage.', 'simple-posting'); ?></p>
+                        <p> <?php esc_html_e('Check out user guide for further information about plugin usage.', 'simple-posting'); ?></p>
                         <a target="_blank" class="button button-primary" href="<?php echo esc_url('https://stephanie-ruderer.de/simple-posting/'); ?>"><?php esc_html_e('Go to user guide', 'simple-posting'); ?></a>
                     </div>
                 </div>
@@ -200,8 +200,8 @@ class Simple_Posting {
                                 do_settings_sections('simple_posting_section');
                                 submit_button();
                             } else {
-                                ?>
-                                <h2><?php esc_html_e('Unfortunately, you are not authorized to change settings.', 'simple-posting'); ?></h2><h3 style="margin-bottom:20px"><?php esc_html_e('Please contact an administrator.', 'simple-posting'); ?></h3<?php }
+                                echo '<h2>' . esc_html('Unfortunately, you are not authorized to change settings.', 'simple-posting') . '</h2><h3 style="margin-bottom:20px">' . esc_html('Please contact an administrator.', 'simple-posting') . '</h3>';
+                            }
                             ?>
                         </form>
                     </div>
