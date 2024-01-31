@@ -187,7 +187,7 @@ class Simple_Posting {
                     <div class="column description">
                         <img src="<?php echo esc_url(SIMPLE_POSTING_URI . 'assets/img/folder.svg'); ?>" class="icon">
                         <h2><?php esc_html_e('User Guide', 'simple-posting'); ?></h2>
-                        <p> <?php esc_html_e('Check out user guide for further information about plugin usage.', 'simple-posting'); ?></p>
+                        <p><?php esc_html_e('Check out user guide for further information about plugin usage.', 'simple-posting'); ?></p>
                         <a target="_blank" class="button button-primary" href="<?php echo esc_url('https://stephanie-ruderer.de/simple-posting/'); ?>"><?php esc_html_e('Go to user guide', 'simple-posting'); ?></a>
                     </div>
                 </div>
@@ -200,8 +200,8 @@ class Simple_Posting {
                                 do_settings_sections('simple_posting_section');
                                 submit_button();
                             } else {
-                                '<h2>' . esc_html_e('Unfortunately, you are not authorized to change settings.', 'simple-posting') . '</h2><h3 style="margin-bottom:20px">' . esc_html_e('Please contact an administrator.', 'simple-posting') . '</h3>';
-                            }
+                                ?>
+                                <h2><?php esc_html_e('Unfortunately, you are not authorized to change settings.', 'simple-posting'); ?></h2><h3 style="margin-bottom:20px"><?php esc_html_e('Please contact an administrator.', 'simple-posting'); ?></h3<?php }
                             ?>
                         </form>
                     </div>
@@ -486,7 +486,7 @@ class Simple_Posting {
 
         $date_time_now = DateTime::createFromImmutable(current_datetime());
         $date_time_now->modify('+5 minutes'); // add 5 minutes to give Zapier and Buffer time to process the post     
-        $date_time_post = DateTime::createFromImmutable(get_post_datetime($post, 'date', 'local'));  
+        $date_time_post = DateTime::createFromImmutable(get_post_datetime($post, 'date', 'local'));
         if ($date_time_post > $date_time_now) {
             $zap_data['post_date'] = $date_time_post->format('Y-m-d H:i:s');
         } else {
@@ -750,17 +750,17 @@ class Simple_Posting {
             }
         }
 
-        $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->prefix . 'postmeta WHERE post_id=%d', $post_id ), ARRAY_A );
+        $post_meta_infos = $wpdb->get_results($wpdb->prepare('SELECT meta_key, meta_value FROM ' . $wpdb->prefix . 'postmeta WHERE post_id=%d', $post_id), ARRAY_A);
         if (count($post_meta_infos) > 0) {
             foreach ($post_meta_infos as $meta_info) {
                 $wpdb->query($wpdb->prepare('INSERT INTO ' . $wpdb->prefix . 'postmeta (post_id, meta_key, meta_value) VALUES ((%d, %s, %s)', $new_post_id, $meta_info['meta_key'], addslashes($meta_info['meta_value'])));
             }
         }
-        
+
         set_post_thumbnail($new_post_id, get_post_thumbnail_id($post));
         update_post_meta($new_post_id, 'posting_alt_tag', get_post_meta($post_id, 'posting_alt_tag', true));
-        
-       wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
+
+        wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
     }
 
     /**
