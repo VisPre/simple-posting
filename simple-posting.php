@@ -574,7 +574,7 @@ class Simple_Posting {
                 if (isset($channel_name) && $channel_name !== '') {
                     $valid_fields['channel_' . $count . '_name'] = $channel_name;
                 } else {
-                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', __('Please enter a name for Zapier Webhook', 'simple-posting') . ' ' . esc_html($count) . '.', 'error');
+                    add_settings_error('simple_posting_settings_errors', 'settings_saved_error', esc_html(__('Please enter a name for Zapier Webhook', 'simple-posting')) . ' ' . esc_html($count) . '.', 'error');
                     $error_count++;
                 }
             } else {
